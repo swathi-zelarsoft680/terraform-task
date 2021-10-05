@@ -1,3 +1,20 @@
+terraform {
+  backend "remote" {
+    organization = "swathizs"
+
+    workspaces {
+      name = "swathi"
+    }
+  }
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.27"
+    }
+  }
+
+  required_version = ">= 1.0.6"
+}
 provider "aws" {
   profile = "default"
   region  = var.region
