@@ -2,6 +2,7 @@ provider "aws" {
   region     = "us-east-1"
 }
 
+ /*create vpc*/
 resource "aws_vpc" "vpc" {
   cidr_block       = "192.168.0.0/16"
   instance_tenancy = "default"
@@ -13,6 +14,7 @@ resource "aws_vpc" "vpc" {
   }
 }
 
+ /*creating  pub subnets*/
 resource "aws_subnet" "pub" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = "192.168.1.0/24"
@@ -22,7 +24,7 @@ resource "aws_subnet" "pub" {
   }
 }
 
-
+/*creating private subnet*/
 resource "aws_subnet" "pri" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = "192.168.3.0/24"
@@ -32,6 +34,7 @@ resource "aws_subnet" "pri" {
   }
 }
 
+ /*creating internet_gateway*/
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
 
@@ -40,10 +43,12 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
+ /*create elasticIP*/
 resource "aws_eip" "ip" {
   vpc      = true
 }
 
+ /*create natgateway*/
 resource "aws_nat_gateway" "ngw" {
   allocation_id = aws_eip.ip.id
   subnet_id     = aws_subnet.pri.id
@@ -52,7 +57,7 @@ resource "aws_nat_gateway" "ngw" {
     Name = "NGW"
   }
 }
-
+ /*create public routetable*/
 resource "aws_route_table" "rt1" {
   vpc_id = aws_vpc.vpc.id
 
@@ -65,6 +70,7 @@ resource "aws_route_table" "rt1" {
   }
 }
 
+ /*create private route table*/
 resource "aws_route_table" "rt2" {
   vpc_id = aws_vpc.vpc.id
 
@@ -77,16 +83,19 @@ resource "aws_route_table" "rt2" {
   }
 }
 
+ /*Associate public subnets to routetable*/
 resource "aws_route_table_association" "as_1" {
   subnet_id      = aws_subnet.pub.id
   route_table_id = aws_route_table.rt1.id
 }
 
+/*Associate private subnet to route table*/
 resource "aws_route_table_association" "as_2" {
   subnet_id      = aws_subnet.pri.id
   route_table_id = aws_route_table.rt2.id
 }
 
+/*create security groups*/
 resource "aws_security_group" "sg" {
   name        = "first-SG"
   description = "Allow TLS inbound traffic"
