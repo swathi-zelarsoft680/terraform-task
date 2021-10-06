@@ -17,9 +17,9 @@
 #    required_version = ">= 1.0.6"
 #  }
 
- provider "aws"" {
-  profile = "default"
-  region  = var.region
+ provider "aws" {
+   profile = "default"
+   region  = var.region
 #  shared_credentials_file = "D:/.aws/credentials"
 }
 
