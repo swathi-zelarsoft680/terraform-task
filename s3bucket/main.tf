@@ -18,10 +18,10 @@
 #  }
 
  provider "aws" {
-   profile = "default"
-   region  = var.region
-#  shared_credentials_file = "D:/.aws/credentials"
-}
+  profile = "default"
+  region  = var.region
+  shared_credentials_file = "D:/.aws/credentials"
+ }
 
 resource "aws_s3_bucket" "b" {
   bucket = "binnubucket"
