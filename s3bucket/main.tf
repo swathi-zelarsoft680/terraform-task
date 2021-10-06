@@ -23,7 +23,7 @@
   shared_credentials_file = "D:/.aws/credentials"
  }
 
-resource "aws_s3_bucket" "b" {
+resource "aws_s3_bucket" "bucket" {
   bucket = "binnubucket"
   acl    = "private"
 
