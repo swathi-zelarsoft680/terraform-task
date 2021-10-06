@@ -1,21 +1,21 @@
-#  terraform {
-#   backend "s3" {
-#     bucket = "binnubucket"
-#     key    = "terraform.tfstate"
-#     region = "us-east-1"
-#     profile = "default"
-#     shared_credentials_file = "D:/.aws/credentials"
-#   }
+ terraform {
+  backend "s3" {
+    bucket = "binnubucket"
+    key    = "terraform.tfstate"
+    region = "us-east-1"
+    profile = "default"
+    shared_credentials_file = "D:/.aws/credentials"
+  }
 
-#    required_providers {
-#     aws = {
-#        source  = "hashicorp/aws"
-#        version = "~> 3.27"
-#      }
-#    }
+   required_providers {
+    aws = {
+       source  = "hashicorp/aws"
+       version = "~> 3.27"
+     }
+   }
 
-#    required_version = ">= 1.0.6"
-#  }
+   required_version = ">= 1.0.6"
+  }
 
  provider "aws" {
   profile = "default"
