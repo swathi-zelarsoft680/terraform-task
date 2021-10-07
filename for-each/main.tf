@@ -3,7 +3,7 @@ provider "aws" {
 }
 variable "vpcs" {
   type = map(object({
-    cider = string
+    cidr = string
     tags = map(string)
     tenancy =string
   }))
