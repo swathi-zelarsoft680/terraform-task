@@ -9,10 +9,11 @@ terraform {
   required_version = ">= 1.0.6i"
 }
 
-provider "aws" {
+ provider "aws" {
   profile = "default"
   region  = "us-east-1"
-}
+  shared_credentials_file = "D:/.aws/credentials"
+ }
 
 resource "aws_instance" "app_server" {
   ami           = "ami-0eb5f3f64b10d3e0e"
