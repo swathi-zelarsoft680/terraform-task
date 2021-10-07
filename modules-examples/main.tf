@@ -1,5 +1,7 @@
 provider "aws" {
-	region = "us-east-1"
+  region     = "us-east-1"
+  access_key = "AKIA3J6ZMTGQ4E5REHEB"
+  secret_key = "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"
 }
 
 
@@ -10,7 +12,7 @@ resource "aws_vpc" "main" {
 
 
 data "aws_vpc" "foo" {
-	provider = aws.east
+	provider = "aws"
 	default  = true
 }
 
