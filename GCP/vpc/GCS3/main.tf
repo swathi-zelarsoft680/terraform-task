@@ -15,7 +15,7 @@ provider "google" {
   zone    = var.zone
 }
 
-resource "google_storage_bucket" "GCP" {
+resource "google_storage_bucket" "GCP1" {
   name          = "swathi"
   location      = "EU"
   force_destroy = true
