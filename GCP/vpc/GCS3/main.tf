@@ -15,9 +15,15 @@ provider "google" {
   zone    = var.zone
 }
 
-resource "google_storage_bucket" "GCP1" {
-  name          = "swathi"
+resource "google_storage_bucket" "static-site" {
+  name          = "image-store.com"
   location      = "EU"
   force_destroy = true
 
+
+
+resource "google_storage_bucket_object" "text" {
+  name   = "butterfly.txt"
+  content = "*** Welcome to DevOps world ***\n we have uploaded text file in swathi bucket"
+  bucket = "${google_storage_bucket.static-site.name}"  
 }
